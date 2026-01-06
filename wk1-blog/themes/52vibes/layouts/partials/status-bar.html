@@ -5,18 +5,15 @@
       {{ with $.Params.week }}{{ $currentWeek = . }}{{ end }}
       
       {{ range where site.RegularPages "Section" "blog" }}
-        {{ with .Params.week }}
-        <a href="{{ $.RelPermalink }}" 
-           class="week {{ if eq . $currentWeek }}current{{ else }}completed{{ end }}"
-           title="Week {{ . }}">
-          {{ . }}
+        {{ if .Params.week }}
+        <a href="{{ .RelPermalink }}" 
+           class="week {{ if eq .Params.week $currentWeek }}current{{ else }}completed{{ end }}"
+           title="{{ .Title }}">
+          {{ .Params.week }}
         </a>
         {{ end }}
       {{ end }}
     </div>
-  </div>
-  <div class="status-bar-center">
-    <a href="/blog/" class="site-title">52vibes</a>
   </div>
   <div class="status-bar-right">
     <button id="theme-toggle" title="Toggle theme">◐</button>

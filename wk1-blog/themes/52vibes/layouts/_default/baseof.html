@@ -12,6 +12,10 @@
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
   
+  <div class="site-header">
+    <a href="/blog/" class="site-title">52vibes</a>
+  </div>
+  
   <header class="status-bar" role="banner">
     {{ partial "status-bar.html" . }}
   </header>
@@ -33,6 +37,22 @@
     h.dataset.theme=s||p;
     var t=document.getElementById('theme-toggle');
     if(t)t.onclick=function(){var n=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=n;localStorage.setItem(k,n)};
+  })();
+  (function(){
+    var toc=document.querySelector('.toc-sidebar');
+    if(!toc)return;
+    var headings=document.querySelectorAll('.content h2[id], .content h3[id]');
+    if(!headings.length)return;
+    var links=toc.querySelectorAll('a[href^="#"]');
+    var linkMap={};
+    links.forEach(function(a){linkMap[a.getAttribute('href').slice(1)]=a});
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var a=linkMap[e.target.id];
+        if(a)a.classList.toggle('active',e.isIntersecting);
+      });
+    },{root:document.querySelector('.content-area'),rootMargin:'-10% 0px -80% 0px',threshold:0});
+    headings.forEach(function(h){obs.observe(h)});
   })();
   </script>
 </body>

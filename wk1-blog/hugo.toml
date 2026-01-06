@@ -10,7 +10,7 @@ enableGitInfo = true
 [params]
   description = "52 weeks of AI agent collaboration experiments"
   author = "Vinay"
-  github = "https://github.com/vinayk/52vibes"
+  github = "https://github.com/vinayprograms/52vibes-blog"
 
 [markup]
   [markup.goldmark]

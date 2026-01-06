@@ -5,8 +5,8 @@ week: 1
 quarter: 1
 theme: "Agentic Infrastructure"
 description: "Setting up the 52vibes blog infrastructure with Hugo, custom theme, and automation tools"
-session_log: "https://github.com/vinayk/52vibes/wiki"
-repository: "https://github.com/vinayk/52vibes"
+session_log: "https://github.com/vinayprograms/52vibes-blog/wiki"
+repository: "https://github.com/vinayprograms/52vibes-blog"
 tags: ["hugo", "infrastructure", "week-1"]
 ---
 
