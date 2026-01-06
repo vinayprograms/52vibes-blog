@@ -1,25 +1,22 @@
 <div class="status-bar-row">
   <div class="status-bar-left">
     <div class="weeks">
-      {{ $currentWeek := 1 }}
-      {{ with .Params.week }}{{ $currentWeek = . }}{{ end }}
+      {{ $currentWeek := 0 }}
+      {{ with $.Params.week }}{{ $currentWeek = . }}{{ end }}
       
-      {{ range $i := seq 52 }}
-      {{ $weekNum := printf "%02d" $i }}
-      {{ $weekPage := $.Site.GetPage (printf "/blog/week-%s*" $weekNum) }}
-      
-      {{ if $weekPage }}
-      <a href="{{ $weekPage.RelPermalink }}" 
-         class="week {{ if eq $i $currentWeek }}current{{ else }}completed{{ end }}"
-         title="Week {{ $i }}: {{ $weekPage.Title }}">
-        {{ $i }}
-      </a>
-      {{ end }}
+      {{ range where site.RegularPages "Section" "blog" }}
+        {{ with .Params.week }}
+        <a href="{{ $.RelPermalink }}" 
+           class="week {{ if eq . $currentWeek }}current{{ else }}completed{{ end }}"
+           title="Week {{ . }}">
+          {{ . }}
+        </a>
+        {{ end }}
       {{ end }}
     </div>
   </div>
   <div class="status-bar-center">
-    <a href="/" class="site-title">52vibes</a>
+    <a href="/blog/" class="site-title">52vibes</a>
   </div>
   <div class="status-bar-right">
     <button id="theme-toggle" title="Toggle theme">◐</button>
