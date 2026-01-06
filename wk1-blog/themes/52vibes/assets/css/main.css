@@ -577,11 +577,10 @@ section > p:first-of-type {
   color: var(--accent);
 }
 
-/* Bottom Navigation */
-.bottom-nav {
+/* Top Navigation */
+.top-nav {
   background: var(--bg);
-  border-top: 1px solid var(--border);
-  padding: 0.5rem var(--spacing);
+  padding: 0.375rem var(--spacing);
   display: flex;
   justify-content: center;
   gap: 1.5rem;
@@ -589,18 +588,18 @@ section > p:first-of-type {
   flex-shrink: 0;
 }
 
-.bottom-nav a {
+.top-nav a {
   color: var(--fg-dim);
   text-decoration: none;
   font-size: 0.8125rem;
   font-family: var(--font-mono);
 }
 
-.bottom-nav a:hover {
+.top-nav a:hover {
   color: var(--accent);
 }
 
-.bottom-nav a[target="_blank"]::after {
+.top-nav a[target="_blank"]::after {
   content: " ↗";
   font-size: 0.75em;
 }

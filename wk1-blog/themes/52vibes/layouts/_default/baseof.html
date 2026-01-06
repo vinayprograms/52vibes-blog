@@ -16,6 +16,10 @@
     <a href="/blog/" class="site-title">52vibes</a>
   </div>
   
+  <nav class="top-nav" aria-label="Main navigation">
+    {{ partial "bottom-nav.html" . }}
+  </nav>
+  
   <header class="status-bar" role="banner">
     {{ partial "status-bar.html" . }}
   </header>
@@ -23,12 +27,6 @@
   <main id="main-content" class="content-area">
     {{ block "main" . }}{{ end }}
   </main>
-  
-  <footer>
-    <nav class="bottom-nav" aria-label="Footer navigation">
-      {{ partial "bottom-nav.html" . }}
-    </nav>
-  </footer>
 
   <script>
   (function(){
