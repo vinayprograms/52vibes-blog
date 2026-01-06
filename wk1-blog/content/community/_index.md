@@ -3,8 +3,6 @@ title: "Community"
 description: "52vibes community projects and forks"
 ---
 
-# Community
-
 Projects and forks from the 52vibes community.
 
 <div id="community-repos">
