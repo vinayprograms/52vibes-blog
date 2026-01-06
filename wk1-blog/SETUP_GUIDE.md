@@ -74,7 +74,7 @@ A data file can provide structured week metadata. Currently using content-based 
      theme: "Agentic Infrastructure"
      status: "complete"
      post: "/blog/week-01-blog-platform/"
-   
+
    - week: 2
      title: "Security Tooling"
      quarter: 1
@@ -95,7 +95,7 @@ The current `content/weeks/_index.md` uses inline Hugo templating. For a dedicat
    {{ define "main" }}
    <section>
      <h1>{{ .Title }}</h1>
-     
+
      <table>
        <thead>
          <tr>
