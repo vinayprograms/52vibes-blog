@@ -582,18 +582,23 @@ a:focus, button:focus {
 /* Desktop: Sidebar TOC */
 @media (min-width: 1100px) {
   .content-area {
-    max-width: 1100px;
+    max-width: 1000px;
   }
 
   .article-layout {
     display: grid;
-    grid-template-columns: 1fr 220px;
+    grid-template-columns: 200px 1fr;
     gap: 3rem;
     align-items: start;
   }
 
   article {
     max-width: none;
+    order: 2;
+  }
+
+  .toc-sidebar {
+    order: 1;
   }
 
   .toc-mobile {
