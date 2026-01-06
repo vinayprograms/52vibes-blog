@@ -1,0 +1,32 @@
+{{ define "main" }}
+<article>
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{ if .Params.date }}
+    <p class="meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ with .Params.week }} · Week {{ . }}{{ end }}
+    </p>
+    {{ end }}
+  </header>
+
+  {{ if .TableOfContents }}
+  <aside aria-label="Table of contents" class="toc">
+    <h2>Contents</h2>
+    {{ .TableOfContents }}
+  </aside>
+  {{ end }}
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  {{ partial "post-nav.html" . }}
+
+  {{ with .Params.session_log }}
+  <p class="session-link">
+    <a href="{{ . }}" target="_blank" rel="noopener">View Session Log →</a>
+  </p>
+  {{ end }}
+</article>
+{{ end }}

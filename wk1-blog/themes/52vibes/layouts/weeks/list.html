@@ -1,0 +1,32 @@
+{{ define "main" }}
+<section>
+  <h1>{{ .Title }}</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Week</th>
+        <th>Quarter</th>
+        <th>Theme</th>
+        <th>Project</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range site.Data.weeks }}
+      <tr>
+        <td>{{ .week }}</td>
+        <td>Q{{ .quarter }}</td>
+        <td>{{ .theme }}</td>
+        <td>
+          {{ if eq .status "complete" }}
+          <a href="{{ .post }}">{{ .title }}</a>
+          {{ else }}
+          {{ .title }}
+          {{ end }}
+        </td>
+      </tr>
+      {{ end }}
+    </tbody>
+  </table>
+</section>
+{{ end }}

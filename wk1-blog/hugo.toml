@@ -1,0 +1,39 @@
+baseURL = "https://52vibes.dev/"
+languageCode = "en-us"
+title = "52vibes"
+theme = "52vibes"
+
+# Hugo settings
+enableRobotsTXT = true
+enableGitInfo = true
+
+[params]
+  description = "52 weeks of AI agent collaboration experiments"
+  author = "Vinay"
+  github = "https://github.com/vinayk/52vibes"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "gruvbox"
+    lineNos = false
+    noClasses = false
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[taxonomies]
+  tag = "tags"
+  quarter = "quarters"
+
+[minify]
+  [minify.tdewolff]
+    [minify.tdewolff.html]
+      keepWhitespace = false

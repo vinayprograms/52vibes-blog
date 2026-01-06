@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  {{ partial "meta.html" . }}
+  {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <header class="status-bar" role="banner">
+    {{ partial "status-bar.html" . }}
+  </header>
+  
+  <main id="main-content" class="content-area">
+    {{ block "main" . }}{{ end }}
+  </main>
+  
+  <footer>
+    <nav class="bottom-nav" aria-label="Footer navigation">
+      {{ partial "bottom-nav.html" . }}
+    </nav>
+  </footer>
+
+  <script>
+  (function(){
+    var k='52vibes-theme',h=document.documentElement,s=localStorage.getItem(k),
+    p=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';
+    h.dataset.theme=s||p;
+    var t=document.getElementById('theme-toggle');
+    if(t)t.onclick=function(){var n=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=n;localStorage.setItem(k,n)};
+  })();
+  </script>
+</body>
+</html>

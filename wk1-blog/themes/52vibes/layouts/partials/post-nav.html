@@ -1,0 +1,11 @@
+<nav class="post-nav" aria-label="Post navigation">
+  {{ with .PrevInSection }}
+  <a href="{{ .RelPermalink }}" class="prev">{{ .Title }}</a>
+  {{ else }}
+  <span></span>
+  {{ end }}
+  
+  {{ with .NextInSection }}
+  <a href="{{ .RelPermalink }}" class="next">{{ .Title }}</a>
+  {{ end }}
+</nav>

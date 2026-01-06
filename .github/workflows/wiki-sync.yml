@@ -1,0 +1,57 @@
+# Wiki Sync Workflow
+#
+# Syncs session log markdown files from sessions/ to the repository wiki.
+# Triggers on pushes to main that modify files in sessions/.
+#
+# Requirements:
+# 1. Create a Personal Access Token (PAT) with 'repo' scope
+# 2. Add as repository secret named 'WIKI_TOKEN'
+# 3. Ensure wiki is enabled for the repository
+#
+# The PAT is required because GITHUB_TOKEN doesn't have wiki write permissions.
+
+name: Wiki Sync
+
+on:
+  push:
+    branches: [main]
+    paths: ['sessions/**']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wiki-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+
+      - name: Checkout wiki
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}.wiki
+          path: wiki
+          token: ${{ secrets.WIKI_TOKEN }}
+
+      - name: Copy session logs
+        run: |
+          # Only copy .md files, ignore errors if no files exist
+          cp sessions/*.md wiki/ 2>/dev/null || true
+
+      - name: Commit and push
+        working-directory: wiki
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "Sync session logs (${{ github.sha }})"
+            git push
+          else
+            echo "No changes to sync"
+          fi

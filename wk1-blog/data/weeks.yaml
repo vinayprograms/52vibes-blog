@@ -1,0 +1,12 @@
+- week: 1
+  title: "Blog Platform"
+  quarter: 1
+  theme: "Agentic Infrastructure"
+  status: "complete"
+  post: "/blog/week-01-blog-platform/"
+
+- week: 2
+  title: "Security Tooling"
+  quarter: 1
+  theme: "Agentic Infrastructure"
+  status: "upcoming"

@@ -1,0 +1,50 @@
+{{ $title := .Title }}
+{{ $description := .Description | default .Site.Params.description }}
+{{ $image := .Params.image | default "/images/og-default.png" }}
+{{ $url := .Permalink }}
+
+<meta name="description" content="{{ $description }}">
+<meta name="author" content="{{ .Site.Params.author }}">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ $url }}">
+<meta property="og:image" content="{{ $image | absURL }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $image | absURL }}">
+
+<!-- Canonical -->
+<link rel="canonical" href="{{ $url }}">
+
+{{ if .IsPage }}
+<!-- JSON-LD for blog posts -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ .Title }}",
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  {{ with .Lastmod }}"dateModified": "{{ .Format "2006-01-02T15:04:05Z07:00" }}",{{ end }}
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Site.Params.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}"
+  },
+  "description": "{{ $description }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ $url }}"
+  }
+}
+</script>
+{{ end }}

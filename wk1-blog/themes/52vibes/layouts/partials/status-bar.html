@@ -1,0 +1,27 @@
+<div class="status-bar-inner">
+  <a href="/" class="site-title">52vibes</a>
+  
+  <div class="weeks">
+    {{ $currentWeek := 1 }}
+    {{ with .Params.week }}{{ $currentWeek = . }}{{ end }}
+    
+    {{ range $i := seq 52 }}
+    {{ $weekNum := printf "%02d" $i }}
+    {{ $weekPage := $.Site.GetPage (printf "/blog/week-%s*" $weekNum) }}
+    
+    {{ if $weekPage }}
+    <a href="{{ $weekPage.RelPermalink }}" 
+       class="week {{ if eq $i $currentWeek }}current{{ else }}completed{{ end }}"
+       title="Week {{ $i }}: {{ $weekPage.Title }}">
+      {{ $i }}
+    </a>
+    {{ else if le $i 4 }}
+    <span class="week upcoming" title="Week {{ $i }}: Coming soon">{{ $i }}</span>
+    {{ end }}
+    {{ end }}
+  </div>
+  
+  <div class="actions">
+    <button id="theme-toggle" title="Toggle theme">◐</button>
+  </div>
+</div>
