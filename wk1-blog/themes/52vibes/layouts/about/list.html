@@ -1,0 +1,34 @@
+{{ define "main" }}
+<div class="article-layout">
+  {{ if .TableOfContents }}
+  <aside aria-label="Table of contents" class="toc-sidebar">
+    <div class="toc-sticky">
+      <h2>Contents</h2>
+      {{ .TableOfContents }}
+    </div>
+  </aside>
+  {{ end }}
+
+  <article>
+    <header>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}
+      <p class="meta">{{ . }}</p>
+      {{ end }}
+    </header>
+
+    {{ if .TableOfContents }}
+    <nav aria-label="Table of contents" class="toc-mobile">
+      <details>
+        <summary>Contents</summary>
+        {{ .TableOfContents }}
+      </details>
+    </nav>
+    {{ end }}
+
+    <div class="content">
+      {{ .Content }}
+    </div>
+  </article>
+</div>
+{{ end }}
