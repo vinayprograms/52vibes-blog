@@ -1,5 +1,5 @@
 ---
-title: "Why I'm Letting an AI Agent Drive for 52 Weeks"
+title: "Why I'm letting an AI agent drive for 52 weeks"
 date: 2026-01-06T10:00:00-08:00
 week: 1
 quarter: 1
@@ -25,7 +25,7 @@ I'm not using the agent as a fancy autocomplete. I'm giving it problems to solve
 
 The agent is [Crush](https://github.com/charmbracelet/crush) and uses Claude Opus 4.5 for LLM. Every session is logged. Every failure documented. No cherry-picking the wins.
 
-## What Actually Happened This Week
+## What actually happened this week
 
 The numbers tell a story:
 
@@ -41,7 +41,7 @@ For every prompt I gave, the agent generated five responses on average — readi
 
 Here's what I actually observed.
 
-### The Collaboration Model
+### The collaboration model
 
 I designed a 6-stage formal requirements process:
 
@@ -60,7 +60,7 @@ The agent took those needs and autonomously generated:
 
 303 messages of requirements work from essentially a handful of prompts. Detailed traceability across stages emerged with minimal prompting. Decision on which RFC 2119 keywords (MUST, SHOULD, MAY) to use happened with almost no guidance, except for me asking it to be used.
 
-### When It Worked
+### When it worked
 
 The agent excelled at transformations (it is a transformer architecture after all!):
 - Vague requirements → formal specifications
@@ -75,7 +75,7 @@ For `crush-export` — a Go CLI tool for exporting Crush sessions to markdown �
 
 I didn't review individual lines of code during implementation. I described what I wanted, the agent built it, and the tests passed.
 
-### Where The Boundary Might Be
+### Where the boundary might be
 
 Cloudflare Pages deployment had to be done manually — not because the agent struggled, but because it was not easy to automate without access to Cloudflare API/MCP. The agent clearly understood (if you can call it so) that these are manual steps I need to perform on the Cloudflare dashboard.
 
@@ -85,7 +85,7 @@ This also revealed the human side of this challenge - when should I curb the urg
 
 This week, the agent seemed to excel at text transformations, I handled integrations. But I'm not ready to call that a rule yet — it's one data point.
 
-### When The Human Overdoes It
+### When the human overdoes it
 
 Here's something that doesn't get discussed: humans can overengineer too.
 
@@ -95,7 +95,7 @@ Was it necessary for a week-1 blog? Almost certainly not. A simpler "describe wh
 
 When an agent produces excessive code, we cry "hallucination". When a human imposes excessive process, we call it... being thorough? Best practices?
 
-In a corporate setting, this matters. Converting the extra time spent to billable hours has big impact on project costs. The agent would have happily built the blog in a fraction of the time if I hadn't insisted on the ceremony. The agent doesn't push back on process any more than it pushes back on scope. It implements what you describe. **The discipline has to come from the human — including discipline about when NOT to be "over-disciplined".**
+In a corporate setting, this matters. Converting all that extra work to billable hours adds to project cost. The agent would have happily built the blog in a fraction of the time if I hadn't insisted on the ceremony. The agent doesn't push back on process any more than it pushes back on scope. It implements what you describe. **The discipline has to come from the human — including discipline about when NOT to be "over-disciplined".**
 
 ## The Artifacts
 
