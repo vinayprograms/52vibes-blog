@@ -1,6 +1,6 @@
 ---
-title: "Weekly Index"
-description: "Index of all 52 weekly projects"
+title: "Weekly Projects"
+description: "List of all weekly projects"
 ---
 
 # Weekly Index

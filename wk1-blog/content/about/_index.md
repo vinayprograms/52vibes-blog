@@ -1,6 +1,6 @@
 ---
 title: "About"
-description: "About 52vibes - a year-long AI agent collaboration experiment"
+description: "52vibes - a year-long AI agent collaboration experiment"
 ---
 
 52vibes is a year-long experiment in human-AI collaboration. Each week, we ship a working project while documenting the process of building with AI agents.
