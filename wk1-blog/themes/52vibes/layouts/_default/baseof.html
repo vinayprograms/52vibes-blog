@@ -44,13 +44,20 @@
     var links=toc.querySelectorAll('a[href^="#"]');
     var linkMap={};
     links.forEach(function(a){linkMap[a.getAttribute('href').slice(1)]=a});
+    var current=null;
+    function update(){links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+current)})}
     var obs=new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        var a=linkMap[e.target.id];
-        if(a)a.classList.toggle('active',e.isIntersecting);
+        if(e.isIntersecting){current=e.target.id}
+        else if(e.boundingClientRect.top<0&&current===e.target.id){
+          var idx=[].indexOf.call(headings,e.target);
+          current=idx<headings.length-1?headings[idx+1].id:current;
+        }
       });
+      update();
     },{root:document.querySelector('.content-area'),rootMargin:'-10% 0px -80% 0px',threshold:0});
     headings.forEach(function(h){obs.observe(h)});
+    links.forEach(function(a){a.addEventListener('click',function(){current=a.getAttribute('href').slice(1);update()})});
   })();
   </script>
 </body>

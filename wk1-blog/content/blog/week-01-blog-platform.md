@@ -123,6 +123,6 @@ This is the question 52vibes is trying to answer. Not "can AI agents code?" but 
 
 ---
 
-{{< callout type="info" >}}
+{{< callout type="note" >}}
 Session logs coming soon.
 {{< /callout >}}
