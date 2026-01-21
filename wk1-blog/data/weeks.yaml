@@ -5,3 +5,11 @@
   status: "complete"
   post: "/blog/week-01-blog-platform/"
   static_title: true
+
+- week: 2-3
+  title: "Memory Service for AI Agents"
+  quarter: 1
+  theme: "Agentic Infrastructure"
+  status: "complete"
+  post: "/blog/week-02-03-memory-service/"
+  static_title: true

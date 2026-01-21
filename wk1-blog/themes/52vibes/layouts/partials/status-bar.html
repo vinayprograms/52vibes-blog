@@ -4,9 +4,9 @@
       {{ $currentWeek := 0 }}
       {{ with $.Params.week }}{{ $currentWeek = . }}{{ end }}
       
-      {{ range where site.RegularPages "Section" "blog" }}
+      {{ range sort (where site.RegularPages "Section" "blog") ".Date" "asc" }}
         {{ if .Params.week }}
-        <a href="{{ .RelPermalink }}" 
+        <a href="{{ .RelPermalink }}"
            class="week {{ if eq .Params.week $currentWeek }}current{{ else }}completed{{ end }}"
            title="{{ .Title }}">
           {{ .Params.week }}

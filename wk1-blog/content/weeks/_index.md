@@ -13,5 +13,5 @@ All 52 weeks of the experiment.
 {{ $weekNum := printf "%02d" $i }}
 {{ $quarter := add (div (sub $i 1) 13) 1 }}
 {{ $theme := index (slice "Agentic Infrastructure" "Production Tools" "Complex Workflows" "Synthesis") (sub $quarter 1) }}
-| {{ $i }} | Q{{ $quarter }} | {{ $theme }} | {{ if eq $i 1 }}[Blog Platform](/blog/week-01-blog-platform/){{ else }}—{{ end }} |
+| {{ $i }} | Q{{ $quarter }} | {{ $theme }} | {{ if eq $i 1 }}[Blog Platform](/blog/week-01-blog-platform/){{ else if or (eq $i 2) (eq $i 3) }}[Memory Service](/blog/week-02-03-memory-service/){{ else }}—{{ end }} |
 {{ end }}
