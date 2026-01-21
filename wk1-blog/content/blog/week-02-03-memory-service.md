@@ -59,7 +59,7 @@ The podcast pointed out two things relevant to this discussion -
 1. Everything we experiment with in LLM space is greenfield. Brownfield success at scale remains unproven.
 2. Things like renaming a class is a solved problem with IDEs. Yet LLMs cannot reliably do it across a codebase. Understanding code and merely modifying code based on plaintext specifications are different capabilities.
 
-This also points to something important: **brains without powerful tools aren't effective.** Tools that handle complex relationships and modify targets based on those relationships give orders of magnitude more leverage. Humans became the dominant species not because of intelligence alone. The human body containint powerfule sensory and motor systems combined with brains gave us true leverage.
+This also points to something important: **brains without powerful tools aren't effective.** Tools that handle complex relationships and modify targets based on those relationships give orders of magnitude more leverage. Humans became the dominant species not because of intelligence alone. The human body with its powerful sensory and motor systems combined with brains gave us true leverage.
 
 
 ## What shipped
