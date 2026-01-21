@@ -1,10 +1,10 @@
 ---
-title: "The runaway process problem"
+title: "When Features Ship But Performance Doesn't"
 date: 2026-01-20T09:00:00-05:00
 week: 2-3
 quarter: 1
 theme: "Agentic Infrastructure"
-description: "When you optimize the LLM's feedback loop, you break your own. Two weeks of experiments revealed where vibe coding hits walls."
+description: "Vibe coding ships features fast. Performance, platform quirks, and verification? Not so much."
 repository: "https://github.com/vinayprograms/52vibes"
 tags: ["memory", "infrastructure", "week-2", "week-3", "golang", "c", "vibe-coding", "containers"]
 ---
@@ -27,7 +27,7 @@ LLM's proposed architecture worked - multi-container setup with Squid proxy, dom
 
 ## Experiment 2: Memory service in C
 
-I built a memory service for AI agents — semantic search over conversation history so agents can build context through selective querying shoving everything into its context window leading to "context rot". The target: <10ms p99 latency.
+I built a [memory service](https://github.com/vinayprograms/agent-memory/tree/main/memory-c) for AI agents — semantic search over conversation history so agents can build context through selective querying shoving everything into its context window leading to "context rot". The target: <10ms p99 latency.
 
 Why C? My argument was that Go's GC pauses could hit 1-5ms under load — half the 10ms latency budget gone to garbage collection. C has zero GC, direct ONNX API access, predictable performance under concurrency. The trade-off? C means slower development. But I reasoned: "Development velocity concern is mitigated since Claude implements the code."
 
@@ -41,7 +41,7 @@ But, it missed <10ms by an order of magnitude. Smaller embedding models took a f
 
 ## Experiment 3: C to Go migration
 
-I asked the agent to identify Go alternatives for C libraries (ONNX, HNSW, WAL) and migrate the architecture. It generated ~7,200 lines of Go. The translation preserved design decisions while adapting to Go idioms.
+I asked the agent to identify Go alternatives for C libraries (ONNX, HNSW, WAL) and [migrate](https://github.com/vinayprograms/agent-memory/tree/main/memory-go) the architecture. It generated ~7,200 lines of Go. The translation preserved design decisions while adapting to Go idioms.
 
 This worked well. Language migration with architectural preservation is achievable.
 
