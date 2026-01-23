@@ -27,7 +27,7 @@ LLM's proposed architecture worked - multi-container setup with Squid proxy, dom
 
 ## Experiment 2: Memory service in C
 
-I built a [memory service](https://github.com/vinayprograms/agent-memory/tree/main/memory-c) for AI agents — semantic search over conversation history so agents can build context through selective querying shoving everything into its context window leading to "context rot". The target: <10ms p99 latency.
+I built a [memory service](https://github.com/vinayprograms/agent-memory/tree/main/memory-c) for AI agents — semantic search over conversation history - so agents can build context through selective querying instead of shoving everything into its context window leading to "context rot". The target: <10ms p99 latency.
 
 Why C? My argument was that Go's GC pauses could hit 1-5ms under load — half the 10ms latency budget gone to garbage collection. C has zero GC, direct ONNX API access, predictable performance under concurrency. The trade-off? C means slower development. But I reasoned: "Development velocity concern is mitigated since Claude implements the code."
 
@@ -35,7 +35,7 @@ That was the bet. Let AI handle C's velocity disadvantage. See if performance fo
 
 The result was ~12,300 lines of C that implemented HNSW index, LMDB storage, ONNX embeddings and JSON-RPC API. Features shipped fast. The velocity bet paid off.
 
-But, it missed <10ms by an order of magnitude. Smaller embedding models took a few hundred milliseconds. Larger models: 2-3 seconds. I asked for Apple Silicon and NVIDIA acceleration to be added. The agent claimed that it had implemented it, but it always fell back to CPU during execution (when running on the host OS).
+But, it missed <10ms by an order of magnitude. Smaller embedding models took a few hundred milliseconds. Larger models: 2-3 seconds. I asked for Apple Silicon and NVIDIA acceleration to be added. The agent claimed that it had implemented it, but it always fell back to CPU during execution.
 
 **Insight:** Agents are not mature enough to meet aggressive non-functional requirements (like performance). This is a classic problem in software engineering. Designs that have agressive non-functional requirements are fundamentally different from those where there is enough room for delays and latencies. AI delivered on development velocity — the reason I thought I could use C despite its overhead. But it didn't deliver on performance — the reason I chose C in the first place. The language choice was correct. The execution didn't follow.
 
@@ -78,7 +78,7 @@ This was part 1 of N. The memory service work continues.
 
 **Three:** Agent-generated tests create a verification loop for the agent, not the user. To verify that work truly meets your needs, you must spend time building tests as you understand them instead of letting the agent run fully automated TDD loops.
 
-**Four:** You can optimize the LLM's feedback loop while breaking your own. If you're not learning as you build, you're accumulating debt you don't understand.
+**Four:** This was from the podcast - "You can optimize the LLM's feedback loop while breaking your own. If you're not learning as you build, you're accumulating debt you don't understand."
 
 ## The boundary
 
@@ -94,7 +94,7 @@ It struggles when:
 
 ---
 **Footnotes**
-1. Anthropic blocked third-party agents from Claude Code Max. I had spend initial days of week-2 migrating all my customizations from Crush to Claude Code. Hence the reason for merging week-2 and week-3 into a single experiment.
+1. Anthropic blocked third-party agents from Claude Code Max. I had to spend initial days of week-2 migrating all my customizations from Crush to Claude Code. Hence the reason for merging week-2 and week-3 into a single experiment.
 2. I may be prompting wrong. I hope readers can point out my mistakes, bad/wrong choices after looking at the logs.
 
 {{< callout type="note" >}}
