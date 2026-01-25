@@ -467,14 +467,6 @@ section > p:first-of-type {
   color: var(--accent);
 }
 
-.post-nav .prev::before {
-  content: "← ";
-}
-
-.post-nav .next::after {
-  content: " →";
-}
-
 /* Session Link */
 .session-link {
   margin-top: 1.5rem;

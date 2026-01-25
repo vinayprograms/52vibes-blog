@@ -92,18 +92,22 @@
         {{ .Content }}
       </div>
 
-      <nav class="post-nav">
-        {{ with .PrevInSection }}
-        <a href="{{ .RelPermalink }}" class="prev">
-          <span class="nav-label">Previous</span>
-          <span class="nav-title">{{ .Title }}</span>
-        </a>
+      {{/* Navigate by weight order */}}
+      {{ $pages := .Parent.Pages.ByWeight }}
+      {{ $currentIndex := 0 }}
+      {{ range $i, $p := $pages }}
+        {{ if eq $p.RelPermalink $.RelPermalink }}
+          {{ $currentIndex = $i }}
         {{ end }}
-        {{ with .NextInSection }}
-        <a href="{{ .RelPermalink }}" class="next">
-          <span class="nav-label">Next</span>
-          <span class="nav-title">{{ .Title }}</span>
-        </a>
+      {{ end }}
+      <nav class="post-nav">
+        {{ if gt $currentIndex 0 }}
+        {{ $prev := index $pages (sub $currentIndex 1) }}
+        <a href="{{ $prev.RelPermalink }}" class="prev">← {{ $prev.Title }}</a>
+        {{ end }}
+        {{ if lt $currentIndex (sub (len $pages) 1) }}
+        {{ $next := index $pages (add $currentIndex 1) }}
+        <a href="{{ $next.RelPermalink }}" class="next">{{ $next.Title }} →</a>
         {{ end }}
       </nav>
     </article>
