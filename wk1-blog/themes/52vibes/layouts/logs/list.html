@@ -1,0 +1,110 @@
+{{ define "main" }}
+<div class="logs-wrapper">
+  <aside class="logs-sidebar-fixed">
+    <h2>Sessions</h2>
+    <nav class="logs-nav">
+      {{ $currentPath := .RelPermalink }}
+      {{ range (site.GetPage "logs").Sections }}
+      {{ if .Sections }}
+      <details {{ if hasPrefix $currentPath .RelPermalink }}open{{ end }}>
+        <summary>
+          <span class="logs-week-title">{{ .Title }}</span>
+        </summary>
+        <div class="logs-subsections">
+          {{ range .Sections }}
+          <details {{ if hasPrefix $currentPath .RelPermalink }}open{{ end }}>
+            <summary>
+              <span class="logs-experiment-title">{{ .Title }}</span>
+              <span class="logs-count">{{ len .Pages }}</span>
+            </summary>
+            <ul>
+              {{ range .Pages.ByWeight }}
+              <li>
+                <a href="{{ .RelPermalink }}" {{ if eq $currentPath .RelPermalink }}class="active"{{ end }}>{{ .Title }}</a>
+              </li>
+              {{ end }}
+            </ul>
+          </details>
+          {{ end }}
+        </div>
+      </details>
+      {{ else }}
+      <details {{ if hasPrefix $currentPath .RelPermalink }}open{{ end }}>
+        <summary>
+          <span class="logs-week-title">{{ .Title }}</span>
+          <span class="logs-count">{{ len .Pages }}</span>
+        </summary>
+        <ul>
+          {{ range .Pages.ByWeight }}
+          <li>
+            <a href="{{ .RelPermalink }}" {{ if eq $currentPath .RelPermalink }}class="active"{{ end }}>{{ .Title }}</a>
+          </li>
+          {{ end }}
+        </ul>
+      </details>
+      {{ end }}
+      {{ end }}
+    </nav>
+  </aside>
+
+  <div class="logs-content-area">
+    <article>
+      <header>
+        <h1>{{ .Title }}</h1>
+        {{ with .Description }}<p class="meta">{{ . }}</p>{{ end }}
+      </header>
+
+      <nav class="toc-mobile">
+        <details>
+          <summary>Browse sessions</summary>
+          <div class="logs-nav">
+            {{ range (site.GetPage "logs").Sections }}
+            {{ if .Sections }}
+            <div class="logs-mobile-group">
+              <strong>{{ .Title }}</strong>
+              {{ range .Sections }}
+              <div class="logs-mobile-subgroup">
+                <em>{{ .Title }}</em>
+                <ul>
+                  {{ range .Pages.ByWeight }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+                </ul>
+              </div>
+              {{ end }}
+            </div>
+            {{ else }}
+            <div class="logs-mobile-group">
+              <strong>{{ .Title }}</strong>
+              <ul>
+                {{ range .Pages.ByWeight }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+              </ul>
+            </div>
+            {{ end }}
+            {{ end }}
+          </div>
+        </details>
+      </nav>
+
+      <div class="content">
+        {{ .Content }}
+        {{ if and .IsSection (not .Parent.IsHome) }}
+        {{ if .Pages }}
+        <ul class="post-list">
+          {{ range .Pages.ByWeight }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+        </ul>
+        {{ end }}
+        {{ else if .IsSection }}
+        <div class="logs-overview">
+          {{ range .Sections }}
+          <div class="logs-group">
+            <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            {{ with .Params.blog_post }}<p class="logs-blog-link"><a href="{{ . }}">Read blog post</a></p>{{ end }}
+            {{ if .Sections }}<p>{{ len .Sections }} experiments</p>{{ else }}<p>{{ len .Pages }} sessions</p>{{ end }}
+          </div>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </article>
+  </div>
+</div>
+{{ end }}

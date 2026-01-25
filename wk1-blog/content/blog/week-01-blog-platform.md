@@ -125,6 +125,4 @@ This is the question 52vibes is trying to answer. Not "can AI agents code?" but 
 
 ---
 
-{{< callout type="note" >}}
-Session logs coming soon.
-{{< /callout >}}
+[View all session logs for this week →](/logs/week-01-blog-platform/)

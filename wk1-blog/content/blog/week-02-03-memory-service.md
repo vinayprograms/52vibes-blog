@@ -97,6 +97,4 @@ It struggles when:
 1. Anthropic blocked third-party agents from Claude Code Max. I had spend initial days of week-2 migrating all my customizations from Crush to Claude Code. Hence the reason for merging week-2 and week-3 into a single experiment.
 2. I may be prompting wrong. I hope readers can point out my mistakes, bad/wrong choices after looking at the logs.
 
-{{< callout type="note" >}}
-Session logs are being converted to a readable form.
-{{< /callout >}}
+[View all session logs for this week →](/logs/week-02-03/)
